@@ -1,0 +1,35 @@
+{
+  "name": "lisman-backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "cron": "^1.4.1",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-fileupload": "^1.0.0-alpha.1",
+    "joi": "^13.7.0",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
+    "multer": "^1.4.0",
+    "mysql2": "^1.5.3",
+    "nodemon": "^1.18.2",
+    "npm": "^6.2.0",
+    "sequelize": "^4.38.0"
+  },
+  "scripts": {
+    "start": "nodemon ./app.js"
+  },
+  "author": "Panji Kurnia Nugroho",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njipan/lisman.git"
+  },
+  "bugs": {
+    "url": "https://github.com/njipan/lisman.git/issues"
+  },
+  "homepage": "https://github.com/njipan/lisman.git#readme",
+  "description": ""
+}
