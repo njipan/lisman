@@ -31,7 +31,7 @@ GET /categories/{id}
 ```shell
 POST /categories/{id}
 
-Parameter :
+Request Body :
 - category_name
 ```
 
@@ -40,7 +40,7 @@ Parameter :
 ```shell
 PUT /categories/{id}
 
-Parameter:
+Request Body :
 - category_name
 ```
 
