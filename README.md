@@ -53,7 +53,7 @@ Request Body :
 - categories : [] with string -> categories with JSON.stringify() with integer value
 ```
 
-#### Delete Category
+#### Delete Audio
 
 ```shell
 DELETE /audios/{id}
