@@ -8,15 +8,15 @@ router.get("/", async (req, res) => {
   const search = req.query.search || "%";
   const page = parseInt(req.query.page) || 1;
   const perPage = 2;
-  await Category.findAndCountAll({
+  await Category.findAll({
     where: {
       name: {
         [Op.like]: `%${search}%`
       }
-    },
-    offset: (page - 1) * perPage,
-    limit: perPage,
-    subQuery: false
+    }
+    // offset: (page - 1) * perPage,
+    // limit: perPage,
+    // subQuery: false
   }).then(result => {
     if (result.count <= 0) {
       res.json(null);

@@ -62,7 +62,6 @@ router.post("/", async (req, res) => {
   const data = req.body;
   Joi.validate(data, ScheduleSchema, (err, value) => {
     if (err) {
-      console.log(err);
       res.send({
         status: "error"
       });

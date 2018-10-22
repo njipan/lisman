@@ -3,11 +3,11 @@ const SubjectController = require("./SubjectController");
 const CategoryController = require("./CategoryController");
 const AudioController = require("./AudioController");
 
-const constrollers = {
+const controllers = {
   ScheduleController: ScheduleController,
   SubjectController: SubjectController,
   CategoryController: CategoryController,
   AudioController: AudioController
 };
 
-module.exports = constrollers;
+module.exports = controllers;

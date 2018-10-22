@@ -47,11 +47,6 @@ app.use("/categories", CategoryController);
 app.use("/schedules", ScheduleController);
 app.use("/subjects", SubjectController);
 
-app.get("/test", (req, res) => {
-  console.log(req.query);
-  res.send("mantap");
-});
-
 const db = require("./app/databases");
 db.sync({ force: false }).then(() => {
   app.listen(port, () => {
