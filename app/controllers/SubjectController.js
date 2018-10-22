@@ -15,16 +15,18 @@ router.get("/", async (req, res) => {
       }
     },
     offset: (page - 1) * perPage,
-    limit: perPage,
-    subQuery: false
+    limit: perPage
   }).then(result => {
     if (result.count <= 0) {
       res.json(null);
       return;
     }
 
-    result.page = page;
-    res.send(result);
+    res.send({
+      datas: result.rows,
+      total_page: parseInt(result.count) / perPage,
+      current_page: page
+    });
   });
 });
 

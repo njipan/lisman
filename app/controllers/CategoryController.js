@@ -8,22 +8,25 @@ router.get("/", async (req, res) => {
   const search = req.query.search || "%";
   const page = parseInt(req.query.page) || 1;
   const perPage = 2;
-  await Category.findAll({
+  await Category.findAndCountAll({
     where: {
       name: {
         [Op.like]: `%${search}%`
       }
-    }
-    // offset: (page - 1) * perPage,
-    // limit: perPage,
-    // subQuery: false
+    },
+    offset: (page - 1) * perPage,
+    limit: perPage
   }).then(result => {
     if (result.count <= 0) {
       res.json(null);
       return;
     }
-    result.page = page;
-    res.send(result);
+
+    res.send({
+      datas: result.rows,
+      total_page: Math.ceil(parseInt(result.count) / perPage),
+      current_page: page
+    });
   });
 });
 

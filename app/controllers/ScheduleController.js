@@ -53,8 +53,12 @@ router.get("/", async (req, res) => {
       res.json(null);
       return;
     }
-    result.page = page;
-    res.send(result);
+
+    res.send({
+      datas: result.rows,
+      total_page: Math.ceil(parseInt(result.count) / perPage),
+      current_page: page
+    });
   });
 });
 
