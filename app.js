@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 const upload = require("express-fileupload");
+const CurrentDate = require("./app/util/CurrentDate");
 
 const {
   ScheduleController,
@@ -36,12 +37,12 @@ app.use(function(req, res, next) {
 
   Log.create({
     referrer: ip,
-    event: `request to ${req.originalUrl}`
+    event: `request to ${req.originalUrl}`,
+    time: CurrentDate.now()
   }).then(() => {
     next();
   });
 });
-
 app.use("/audios", AudioController);
 app.use("/categories", CategoryController);
 app.use("/schedules", ScheduleController);

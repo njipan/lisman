@@ -17,9 +17,13 @@ const Log = db.define(
     event: {
       type: Sequelize.STRING,
       allowNull: false
+    },
+    time: {
+      type: Sequelize.DATE,
+      allowNull: false
     }
   },
-  { freezeTableName: true, timestamps: true }
+  { freezeTableName: true, timestamps: false }
 );
 
 module.exports = Log;

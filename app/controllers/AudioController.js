@@ -75,22 +75,23 @@ router.post("/", async (req, res) => {
   const file = req.files.audio_file;
   data.categories = JSON.parse(data.categories);
 
-  Joi.validate(data, AudioSchema, (err, value) => {
-    if (err) {
+  await Joi.validate(data, AudioSchema, (err, value) => {
+    if (err || !file) {
       res.send({
         status: "error"
       });
       return;
     }
-    if (!file) {
-      res.sendStatus(500);
-      return;
-    }
     if (!AudioFilter.includes(file.mimetype)) {
-      res.sendStatus(500);
+      res.send({
+        status: "error"
+      });
       return;
     }
 
+    const type = file.name.split(".");
+    const typename = type[type.length - 1];
+    const path = `uploads/audios/${data.audio_name}.${typename}`;
     Category.findAll({
       where: {
         id: data.categories
@@ -98,16 +99,21 @@ router.post("/", async (req, res) => {
     }).then(categories => {
       Audio.create({
         name: data.audio_name,
-        path: "dummy"
-      }).then(audio => {
+        path: path
+      }).then(async audio => {
         audio.setCategories(categories);
-        file.mv("uploads/audios/" + file.name).then(err => {
-          if (err) {
-            res.sendStatus(500);
-          } else {
+        file
+          .mv(path)
+          .then(err => {
+            if (err) {
+              res.send({
+                status: "error"
+              });
+              return;
+            }
             res.sendStatus(200).send(audio);
-          }
-        });
+          })
+          .catch(e => {});
       });
     });
   });
