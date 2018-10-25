@@ -49,10 +49,17 @@ app.use("/schedules", ScheduleController);
 app.use("/subjects", SubjectController);
 
 const db = require("./app/databases");
-db.sync({ force: false }).then(() => {
+db.sync({ force: true }).then(() => {
   app.listen(port, () => {
     console.log("===============================================");
     console.log("NA - API - SLC");
     console.log("Listening on port " + port);
   });
 });
+
+console.log(typeof require("./app/util/CurrentDate").now());
+Log.create({
+  referrer: "DUMMY",
+  event: `request to`,
+  time: require("./app/util/CurrentDate").now()
+}).then(() => {});

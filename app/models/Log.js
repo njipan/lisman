@@ -19,7 +19,7 @@ const Log = db.define(
       allowNull: false
     },
     time: {
-      type: Sequelize.DATE,
+      type: Sequelize.STRING,
       allowNull: false
     }
   },
