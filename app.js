@@ -56,10 +56,3 @@ db.sync({ force: true }).then(() => {
     console.log("Listening on port " + port);
   });
 });
-
-console.log(typeof require("./app/util/CurrentDate").now());
-Log.create({
-  referrer: "DUMMY",
-  event: `request to`,
-  time: require("./app/util/CurrentDate").now()
-}).then(() => {});
